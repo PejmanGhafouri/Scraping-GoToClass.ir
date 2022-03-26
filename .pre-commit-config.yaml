@@ -1,0 +1,21 @@
+exclude: ^(README.md|requirements.txt|Makefile)
+default_stages: [ commit ]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: no-commit-to-branch
+        args: [ '-b', 'master']
+      - id: check-yaml
+      - id: end-of-file-fixer
+        stages: [ commit ]
+      - id: trailing-whitespace
+        stages: [ commit ]
+      - id: check-merge-conflict
+      - id: double-quote-string-fixer
+
+  - repo: https://github.com/psf/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+        args: [ '--skip-string-normalization', '--line-length', '120' ]
